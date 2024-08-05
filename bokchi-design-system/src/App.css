@@ -1,8 +1,13 @@
+
+@import "@fontsource/noto-sans";
+@import "@fontsource/noto-sans-kr";
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  font-family: "Noto Sans", "Noto Sans KR", sans-serif;
 }
 
 .logo {
