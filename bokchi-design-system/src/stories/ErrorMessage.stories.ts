@@ -11,7 +11,7 @@ const meta = {
   argTypes: {
     color: {control:"color", description: "ErrorMessage의 색상"},
     children: {control: "text", description: "ErrorMessage의 내용"},
-    position: {control: "text", description: "ErrorMessage의 position style"}
+    position: {control:"text", description: "ErrorMessage의 position 스타일"}
   },
   args: {},
 } satisfies Meta<typeof ErrorMessage>;
