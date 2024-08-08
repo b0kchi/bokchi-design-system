@@ -10,7 +10,8 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {
     color: {control:"color", description: "ErrorMessage의 색상"},
-    children: {control: "text", description: "ErrorMessage의 내용"}
+    children: {control: "text", description: "ErrorMessage의 내용"},
+    position: {control: "text", description: "ErrorMessage의 position style"}
   },
   args: {},
 } satisfies Meta<typeof ErrorMessage>;
@@ -21,6 +22,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     args: {
         children: "Errormessage Here",
-        color: "#FF4D4F"
+        color: "#FF4D4F",
+        position: "initial"
     }
 }

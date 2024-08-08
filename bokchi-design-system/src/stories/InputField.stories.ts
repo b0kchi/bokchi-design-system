@@ -11,6 +11,7 @@ const meta = {
     },
     tags: ['autodocs'],
     argTypes: {
+        id: {control:"text", description: "input의 id", defaultValue:""},
         iconAlt: {control:"text", description: "icon 이미지의 대체 텍스트", defaultValue:"icon"},
         iconPath: {control:"text", description: "icon 이미지의 경로", defaultValue:""},   
         placeholder: {control:"text", description: "input의 placeholder", defaultValue:""},
@@ -34,6 +35,7 @@ export const Default: Story = {
         placeholder: "텍스트를 입력해주세요.",
         value: "",
         errorMessage: "텍스트를 확인해주세요.",
-        isError: false
+        isError: false,
+        id:"",
     }
 }

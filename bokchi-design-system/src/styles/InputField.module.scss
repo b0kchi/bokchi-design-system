@@ -1,0 +1,12 @@
+._container {
+    position: relative;
+    padding-bottom: 5px;
+    ._errorMessage {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        p, span {
+            margin: 0;
+        }
+    }
+}
