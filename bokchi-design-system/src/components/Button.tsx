@@ -1,33 +1,29 @@
 import React from 'react';
 import '../styles/button.css';
+import clsx from 'clsx';
 
-export interface ButtonProps {
+interface IButtonProps {
   primary?: boolean;
-  backgroundColor?: string;
   size?: 'small' | 'medium' | 'large';
-  label: string;
+  children?: string;
   onClick?: () => void;
+  type?: 'textIcon' | 'onlyIcon' | 'onlyText';
+  disabled?: boolean;
 }
 
-/**
- * Primary UI component for user interaction
- */
-export const Button = ({
-  primary = false,
+export default function Button({
   size = 'medium',
-  backgroundColor,
-  label,
   ...props
-}: ButtonProps) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+}: IButtonProps) {
+
   return (
     <button
       type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
-      style={{ backgroundColor }}
-      {...props}
+      className={clsx('BKButton', size)}
+      onClick={props.onClick}
+      disabled={props.disabled}
     >
-      {label}
+      {props.children}
     </button>
   );
 };

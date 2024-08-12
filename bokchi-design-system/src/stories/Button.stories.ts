@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import { Button } from '../components/Button';
+import Button from '../components/Button';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {              // 해당 컴포넌트가 받는 props를 정의한다. 
@@ -14,9 +14,11 @@ const meta = {              // 해당 컴포넌트가 받는 props를 정의한�
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
-    primary: {description: '타입'},
-    label: {description: '라벨'},
-    backgroundColor: { control: 'color' , description: '배경색상'},
+    primary: { control: 'boolean' , description: 'Primary 버튼 여부', defaultValue: false},
+    size: { control: 'select' , description: '버튼의 사이즈', defaultValue: 'medium'},
+    children: { control: 'text' , description: '버튼 내 텍스트', defaultValue: 'button'},
+    type: { control: 'select' , description: '버튼의 종류', defaultValue: 'textIcon'},
+    disabled: {control: 'boolean', description: '버튼 비활성화 여부', defaultValue: false}
   },
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
   args: { onClick: fn() },
@@ -26,29 +28,23 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Primary: Story = {
+export const PrimaryButton: Story = {
   args: {
     primary: true,
-    label: 'Button',
+    children: 'Button',
   },
 };
 
-export const Secondary: Story = {
-  args: {
-    label: 'Button',
-  },
-};
-
-export const Large: Story = {
+export const LargeButton: Story = {
   args: {
     size: 'large',
-    label: 'Button',
+    children: 'Button',
   },
 };
 
-export const Small: Story = {
+export const SmallButton: Story = {
   args: {
     size: 'small',
-    label: 'Button',
+    children: 'Button',
   },
 };
