@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import globalToken from '../tokens/global.json';
+import {createPrimaryColorToken}  from "../tokens/colors";
 
 type TextType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
@@ -12,20 +13,20 @@ interface ITyphographyProps {
 }
 
 const { colors } = globalToken;
+let primaryColorChip = createPrimaryColorToken({red: 100,green: 42,blue: 181});
 
 const Heading1 = styled.h1<ITyphographyProps>`
     font-weight:600;
     font-size: 1.25rem;
     ${(props) => (
         props.state == 'primary' && css`
-        color: ${colors.orange[400].value}`
+        color: ${primaryColorChip.colorPrimary}
+        `
     )};
 `;
-
-
+//color: ${colors.orange[400].value}
 
 export default function Typhograpy(props: ITyphographyProps) {
-    console.log('${colors.orange[400]: ', colors.orange[400].value);
     if (props.type == 'h1') {
         return (
             <Heading1 state={props.state}>{props.children}</Heading1>
