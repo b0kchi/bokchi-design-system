@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import globalToken from '../tokens/global.json';
+import tokens from '../tokens/tokens.json';
 import {createPrimaryColorToken}  from "../tokens/colors";
 
 type TextType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
@@ -12,8 +12,11 @@ interface ITyphographyProps {
     state?: TextState;
 }
 
-const { colors } = globalToken;
-let primaryColorChip = createPrimaryColorToken({red: 100,green: 42,blue: 181});
+const seedPrimary = tokens.core.colors.seed.primary.$value;
+const seedPrimaryArray = seedPrimary.slice(4, seedPrimary.length - 1).split(',');
+
+let primaryColorChip = createPrimaryColorToken({red: parseInt(seedPrimaryArray[0]), green: parseInt(seedPrimaryArray[1]), blue: parseInt(seedPrimaryArray[2])});
+console.log('primaryColorChip: ', primaryColorChip);
 
 const Heading1 = styled.h1<ITyphographyProps>`
     font-weight:600;
