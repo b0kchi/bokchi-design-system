@@ -1,7 +1,7 @@
-import './App.css'
-import Label from './components/Label'
-import InputField from './components/InputField'
-import IconButton from './components/IconButton'
+import './App.css';
+import Label from './components/Label';
+import InputField from './components/InputField';
+import IconButton from './components/IconButton';
 import { useState } from 'react';
 
 function App() {

@@ -1,4 +1,6 @@
-export interface IColorChipProps {
+import tokens from './tokens.json';
+
+interface IColorChipProps {
     red: number;
     green: number;
     blue: number;
@@ -143,7 +145,7 @@ function calcColorToken(red: number, green: number, blue: number, vectorX: numbe
 }
 
 
-export function createPrimaryColorToken({red, green, blue}: IColorChipProps) {
+function createColorPalette({red, green, blue}: IColorChipProps) {
     const vectorX = +red - 255;
     const vectorY = +green - 255;
     const vectorZ = +blue - 255;
@@ -158,7 +160,28 @@ export function createPrimaryColorToken({red, green, blue}: IColorChipProps) {
 
     let colorArray = calcColorToken(red, green, blue, vectorX, vectorY, vectorZ);
 
-    type primaryColorType = {
+    return colorArray;
+}
+
+export function createColorToken() {
+    let seedPrimary = tokens.colors.seed.primary.$value;
+    let seedPrimaryArray = seedPrimary.slice(4, seedPrimary.length - 1).split(',');
+    let seedSuccess = tokens.colors.seed.success.$value;
+    let seedSuccessArray = seedSuccess.slice(4, seedSuccess.length - 1).split(',');
+    let seedWarning = tokens.colors.seed.warning.$value;
+    let seedWarningArray = seedWarning.slice(4, seedWarning.length - 1).split(',');
+    let seedInfo = tokens.colors.seed.info.$value;
+    let seedInfoArray = seedInfo.slice(4, seedInfo.length - 1).split(',');
+    let seedError = tokens.colors.seed.error.$value;
+    let seedErrorArray = seedError.slice(4, seedError.length - 1).split(',');
+
+    let primaryColorChip = createColorPalette({red: parseInt(seedPrimaryArray[0]), green: parseInt(seedPrimaryArray[1]), blue: parseInt(seedPrimaryArray[2])});
+    let successColorChip = createColorPalette({red: parseInt(seedSuccessArray[0]), green: parseInt(seedSuccessArray[1]), blue: parseInt(seedSuccessArray[2])});
+    let warningColorChip = createColorPalette({red: parseInt(seedWarningArray[0]), green: parseInt(seedWarningArray[1]), blue: parseInt(seedWarningArray[2])});
+    let infoColorChip = createColorPalette({red: parseInt(seedInfoArray[0]), green: parseInt(seedInfoArray[1]), blue: parseInt(seedInfoArray[2])});
+    let errorColorChip = createColorPalette({red: parseInt(seedErrorArray[0]), green: parseInt(seedErrorArray[1]), blue: parseInt(seedErrorArray[2])});
+
+    type colorType = {
         colorPrimaryBg: string,
         colorPrimaryBgHover: string,
         colorPrimaryBorder: string,
@@ -168,21 +191,106 @@ export function createPrimaryColorToken({red, green, blue}: IColorChipProps) {
         colorPrimaryActive: string,
         colorPrimaryTextHover: string,
         colorPrimaryText: string,
-        colorPrimaryTextActive: string
+        colorPrimaryTextActive: string,
+        colorSuccessBg: string,
+        colorSuccessBgHover: string,
+        colorSuccessBorder: string,
+        colorSuccessBorderHover: string,
+        colorSuccessHover: string,
+        colorSuccess: string,
+        colorSuccessActive: string,
+        colorSuccessTextHover: string,
+        colorSuccessText: string,
+        colorSuccessTextActive: string,
+        colorWarningBg: string,
+        colorWarningBgHover: string,
+        colorWarningBorder: string,
+        colorWarningBorderHover: string,
+        colorWarningHover: string,
+        colorWarning: string,
+        colorWarningActive: string,
+        colorWarningTextHover: string,
+        colorWarningText: string,
+        colorWarningTextActive: string,
+        colorInfoBg: string,
+        colorInfoBgHover: string,
+        colorInfoBorder: string,
+        colorInfoBorderHover: string,
+        colorInfoHover: string,
+        colorInfo: string,
+        colorInfoActive: string,
+        colorInfoTextHover: string,
+        colorInfoText: string,
+        colorInfoTextActive: string,
+        colorErrorBg: string,
+        colorErrorBgHover: string,
+        colorErrorBorder: string,
+        colorErrorBorderHover: string,
+        colorErrorHover: string,
+        colorError: string,
+        colorErrorActive: string,
+        colorErrorTextHover: string,
+        colorErrorText: string,
+        colorErrorTextActive: string,
+        colorLink: string,
+        colorLinkHover: string,
+        colorLinkActive: string
+    }
+    let colorJson: colorType = {
+        colorPrimaryBg: `rgb(${primaryColorChip[0][0]}, ${primaryColorChip[1][0]}, ${primaryColorChip[2][0]})`,
+        colorPrimaryBgHover: `rgb(${primaryColorChip[0][1]}, ${primaryColorChip[1][1]}, ${primaryColorChip[2][1]})`,
+        colorPrimaryBorder: `rgb(${primaryColorChip[0][2]}, ${primaryColorChip[1][2]}, ${primaryColorChip[2][2]})`,
+        colorPrimaryBorderHover: `rgb(${primaryColorChip[0][3]}, ${primaryColorChip[1][3]}, ${primaryColorChip[2][3]})`,
+        colorPrimaryHover: `rgb(${primaryColorChip[0][4]}, ${primaryColorChip[1][4]}, ${primaryColorChip[2][4]})`,
+        colorPrimary: `rgb(${primaryColorChip[0][5]}, ${primaryColorChip[1][5]}, ${primaryColorChip[2][5]})`,
+        colorPrimaryActive: `rgb(${primaryColorChip[0][6]}, ${primaryColorChip[1][6]}, ${primaryColorChip[2][6]})`,
+        colorPrimaryTextHover: `rgb(${primaryColorChip[0][4]}, ${primaryColorChip[1][4]}, ${primaryColorChip[2][4]})`,
+        colorPrimaryText: `rgb(${primaryColorChip[0][5]}, ${primaryColorChip[1][5]}, ${primaryColorChip[2][5]})`,
+        colorPrimaryTextActive: `rgb(${primaryColorChip[0][6]}, ${primaryColorChip[1][6]}, ${primaryColorChip[2][6]})`,
+        colorSuccessBg: `rgb(${successColorChip[0][0]}, ${successColorChip[1][0]}, ${successColorChip[2][0]})`,
+        colorSuccessBgHover: `rgb(${successColorChip[0][1]}, ${successColorChip[1][1]}, ${successColorChip[2][1]})`,
+        colorSuccessBorder: `rgb(${successColorChip[0][2]}, ${successColorChip[1][2]}, ${successColorChip[2][2]})`,
+        colorSuccessBorderHover: `rgb(${successColorChip[0][3]}, ${successColorChip[1][3]}, ${successColorChip[2][3]})`,
+        colorSuccessHover: `rgb(${successColorChip[0][4]}, ${successColorChip[1][4]}, ${successColorChip[2][4]})`,
+        colorSuccess: `rgb(${successColorChip[0][5]}, ${successColorChip[1][5]}, ${successColorChip[2][5]})`,
+        colorSuccessActive: `rgb(${successColorChip[0][6]}, ${successColorChip[1][6]}, ${successColorChip[2][6]})`,
+        colorSuccessTextHover: `rgb(${successColorChip[0][4]}, ${successColorChip[1][4]}, ${successColorChip[2][4]})`,
+        colorSuccessText: `rgb(${successColorChip[0][5]}, ${successColorChip[1][5]}, ${successColorChip[2][5]})`,
+        colorSuccessTextActive: `rgb(${successColorChip[0][6]}, ${successColorChip[1][6]}, ${successColorChip[2][6]})`,
+        colorWarningBg: `rgb(${warningColorChip[0][0]}, ${warningColorChip[1][0]}, ${warningColorChip[2][0]})`,
+        colorWarningBgHover: `rgb(${warningColorChip[0][1]}, ${warningColorChip[1][1]}, ${warningColorChip[2][1]})`,
+        colorWarningBorder: `rgb(${warningColorChip[0][2]}, ${warningColorChip[1][2]}, ${warningColorChip[2][2]})`,
+        colorWarningBorderHover: `rgb(${warningColorChip[0][3]}, ${warningColorChip[1][3]}, ${warningColorChip[2][3]})`,
+        colorWarningHover: `rgb(${warningColorChip[0][4]}, ${warningColorChip[1][4]}, ${warningColorChip[2][4]})`,
+        colorWarning: `rgb(${warningColorChip[0][5]}, ${warningColorChip[1][5]}, ${warningColorChip[2][5]})`,
+        colorWarningActive: `rgb(${warningColorChip[0][6]}, ${warningColorChip[1][6]}, ${warningColorChip[2][6]})`,
+        colorWarningTextHover: `rgb(${warningColorChip[0][4]}, ${warningColorChip[1][4]}, ${warningColorChip[2][4]})`,
+        colorWarningText: `rgb(${warningColorChip[0][5]}, ${warningColorChip[1][5]}, ${warningColorChip[2][5]})`,
+        colorWarningTextActive: `rgb(${warningColorChip[0][6]}, ${warningColorChip[1][6]}, ${warningColorChip[2][6]})`,
+        colorInfoBg: `rgb(${infoColorChip[0][0]}, ${infoColorChip[1][0]}, ${infoColorChip[2][0]})`,
+        colorInfoBgHover: `rgb(${infoColorChip[0][1]}, ${infoColorChip[1][1]}, ${infoColorChip[2][1]})`,
+        colorInfoBorder: `rgb(${infoColorChip[0][2]}, ${infoColorChip[1][2]}, ${infoColorChip[2][2]})`,
+        colorInfoBorderHover: `rgb(${infoColorChip[0][3]}, ${infoColorChip[1][3]}, ${infoColorChip[2][3]})`,
+        colorInfoHover: `rgb(${infoColorChip[0][4]}, ${infoColorChip[1][4]}, ${infoColorChip[2][4]})`,
+        colorInfo: `rgb(${infoColorChip[0][5]}, ${infoColorChip[1][5]}, ${infoColorChip[2][5]})`,
+        colorInfoActive: `rgb(${infoColorChip[0][6]}, ${infoColorChip[1][6]}, ${infoColorChip[2][6]})`,
+        colorInfoTextHover: `rgb(${infoColorChip[0][4]}, ${infoColorChip[1][4]}, ${infoColorChip[2][4]})`,
+        colorInfoText: `rgb(${infoColorChip[0][5]}, ${infoColorChip[1][5]}, ${infoColorChip[2][5]})`,
+        colorInfoTextActive: `rgb(${infoColorChip[0][6]}, ${infoColorChip[1][6]}, ${infoColorChip[2][6]})`,
+        colorErrorBg: `rgb(${errorColorChip[0][0]}, ${errorColorChip[1][0]}, ${errorColorChip[2][0]})`,
+        colorErrorBgHover: `rgb(${errorColorChip[0][1]}, ${errorColorChip[1][1]}, ${errorColorChip[2][1]})`,
+        colorErrorBorder: `rgb(${errorColorChip[0][2]}, ${errorColorChip[1][2]}, ${errorColorChip[2][2]})`,
+        colorErrorBorderHover: `rgb(${errorColorChip[0][3]}, ${errorColorChip[1][3]}, ${errorColorChip[2][3]})`,
+        colorErrorHover: `rgb(${errorColorChip[0][4]}, ${errorColorChip[1][4]}, ${errorColorChip[2][4]})`,
+        colorError: `rgb(${errorColorChip[0][5]}, ${errorColorChip[1][5]}, ${errorColorChip[2][5]})`,
+        colorErrorActive: `rgb(${errorColorChip[0][6]}, ${errorColorChip[1][6]}, ${errorColorChip[2][6]})`,
+        colorErrorTextHover: `rgb(${errorColorChip[0][4]}, ${errorColorChip[1][4]}, ${errorColorChip[2][4]})`,
+        colorErrorText: `rgb(${errorColorChip[0][5]}, ${errorColorChip[1][5]}, ${errorColorChip[2][5]})`,
+        colorErrorTextActive: `rgb(${errorColorChip[0][6]}, ${errorColorChip[1][6]}, ${errorColorChip[2][6]})`,
+        colorLink: `rgb(${primaryColorChip[0][5]}, ${primaryColorChip[1][5]}, ${primaryColorChip[2][5]})`,
+        colorLinkHover: `rgb(${primaryColorChip[0][3]}, ${primaryColorChip[1][3]}, ${primaryColorChip[2][3]})`,
+        colorLinkActive: `rgb(${primaryColorChip[0][6]}, ${primaryColorChip[1][6]}, ${primaryColorChip[2][6]})`,
     }
 
-    let primaryColorJson: primaryColorType = {
-        colorPrimaryBg: `rgb(${colorArray[0][0]}, ${colorArray[1][0]}, ${colorArray[2][0]})`,
-        colorPrimaryBgHover: `rgb(${colorArray[0][1]}, ${colorArray[1][1]}, ${colorArray[2][1]})`,
-        colorPrimaryBorder: `rgb(${colorArray[0][2]}, ${colorArray[1][2]}, ${colorArray[2][2]})`,
-        colorPrimaryBorderHover: `rgb(${colorArray[0][3]}, ${colorArray[1][3]}, ${colorArray[2][3]})`,
-        colorPrimaryHover: `rgb(${colorArray[0][4]}, ${colorArray[1][4]}, ${colorArray[2][4]})`,
-        colorPrimary: `rgb(${colorArray[0][5]}, ${colorArray[1][5]}, ${colorArray[2][5]})`,
-        colorPrimaryActive: `rgb(${colorArray[0][6]}, ${colorArray[1][6]}, ${colorArray[2][6]})`,
-        colorPrimaryTextHover: `rgb(${colorArray[0][4]}, ${colorArray[1][4]}, ${colorArray[2][4]})`,
-        colorPrimaryText: `rgb(${colorArray[0][5]}, ${colorArray[1][5]}, ${colorArray[2][5]})`,
-        colorPrimaryTextActive: `rgb(${colorArray[0][6]}, ${colorArray[1][6]}, ${colorArray[2][6]})`
-    }
-
-    return primaryColorJson;
+    return colorJson;
 }

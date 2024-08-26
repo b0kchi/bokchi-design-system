@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
+
 import Button from '../components/Button';
+import testIcon from '../assets/testIcon.svg';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {              // 해당 컴포넌트가 받는 props를 정의한다. 
@@ -14,37 +16,28 @@ const meta = {              // 해당 컴포넌트가 받는 props를 정의한�
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
-    primary: { control: 'boolean' , description: 'Primary 버튼 여부', defaultValue: false},
+    type: {control: 'select', description: '버튼의 종류', defaultValue: 'default'},
     size: { control: 'select' , description: '버튼의 사이즈', defaultValue: 'medium'},
     children: { control: 'text' , description: '버튼 내 텍스트', defaultValue: 'button'},
-    type: { control: 'select' , description: '버튼의 종류', defaultValue: 'textIcon'},
-    disabled: {control: 'boolean', description: '버튼 비활성화 여부', defaultValue: false}
+    disabled: {control: 'boolean', description: '버튼 비활성화 여부', defaultValue: false},
+    icononly: {control: 'boolean', description: '아이콘 버튼 여부', defaultValue: false},
+    icon: {description: '아이콘'},
   },
   // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-  args: { onClick: fn() },
+  args: { onClick: fn()},
 } satisfies Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const PrimaryButton: Story = {
+export const DefaultButton: Story = {
   args: {
-    primary: true,
     children: 'Button',
-  },
-};
-
-export const LargeButton: Story = {
-  args: {
-    size: 'large',
-    children: 'Button',
-  },
-};
-
-export const SmallButton: Story = {
-  args: {
-    size: 'small',
-    children: 'Button',
+    type: 'default',
+    size: 'medium',
+    disabled: false,
+    icononly: false,
+    icon: <img src={testIcon}></img>
   },
 };

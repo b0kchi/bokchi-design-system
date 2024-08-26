@@ -1,0 +1,19 @@
+
+@import "@fontsource/noto-sans";
+@import "@fontsource/noto-sans-kr";
+@import "./reset.css";
+
+.reset {
+  * {
+    font-family: "Noto Sans", "Noto Sans KR", sans-serif;
+  }
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  * {
+    font-family: "Noto Sans", "Noto Sans KR", sans-serif;
+  }
+}

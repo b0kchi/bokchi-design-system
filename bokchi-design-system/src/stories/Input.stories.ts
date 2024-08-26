@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import testIcon from '../assets/testIcon.svg';
-import InputField from '../components/InputField';
+import Input from '../components/Input';
 
 const meta = {             
-    title: 'Data Entry/InputField',
-    component: InputField,       
+    title: 'Data Entry/Input',
+    component: Input,       
     parameters: {
         layout: 'centered',
     },
@@ -23,7 +23,7 @@ const meta = {
         onChange: fn(),
         onIconClick: fn()
     },
-} satisfies Meta<typeof InputField>;
+} satisfies Meta<typeof Input>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

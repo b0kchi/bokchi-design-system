@@ -1,4 +1,3 @@
-import IconButton from "./IconButton";
 import ErrorMessage from "./ErrorMessage";
 import styles from '../styles/InputField.module.scss';
 import clsx from "clsx";
@@ -19,7 +18,6 @@ export default function InputField(props: IInputFieldProps) {
     return (
         <div className={styles._container}>
             <input type="text" id={props.id} placeholder={props.placeholder} value={props.value} onChange={props.onChange}/>
-            {props.value && <IconButton onClick={props.onIconClick} iconAlt={props.iconAlt} iconPath={props.iconPath}/>}
             {props.isError && <ErrorMessage position='bottom'>{props.errorMessage}</ErrorMessage>}
         </div>
     );
