@@ -18,9 +18,6 @@ interface IButtonProps {
 const colorChip = createColorToken();
 const baseColorChip = baseColorToken;
 
-console.log("colorChip: ", colorChip);
-console.log("baseColorChip: ", baseColorChip);
-
 const StyledButton = styled.button<IButtonProps>`
   cursor: pointer;
   display: flex;

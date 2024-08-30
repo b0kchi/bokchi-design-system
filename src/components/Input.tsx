@@ -1,24 +1,42 @@
-import ErrorMessage from "./ErrorMessage";
-import styles from '../styles/InputField.module.scss';
-import clsx from "clsx";
+import styled from "styled-components";
+import { createColorToken } from "../tokens/colors";
+import baseColorToken from "../tokens/tokens.json";
 
-interface IInputFieldProps {
-    iconPath: any;
-    iconAlt: string;
-    onIconClick: () => void;
-    placeholder: string;
-    onChange: () => void;
-    value: string;
-    errorMessage: string;
-    isError: boolean;
-    id: string;
+type InputType = "checkbox" | "radio" | "date" | "file" | "text" | "password";
+
+interface IInputProps {
+  type: InputType;
+  name?: string;
+  value?: string;
+  id?: string;
+  checked?: boolean;
+  minlength?: string;
+  required?: boolean;
+  onChange: () => void;
 }
 
-export default function InputField(props: IInputFieldProps) {
-    return (
-        <div className={styles._container}>
-            <input type="text" id={props.id} placeholder={props.placeholder} value={props.value} onChange={props.onChange}/>
-            {props.isError && <ErrorMessage position='bottom'>{props.errorMessage}</ErrorMessage>}
-        </div>
-    );
+const StyledInput = styled.input<IInputProps>``;
+
+export default function Input({
+  type = "text",
+  name,
+  value,
+  id,
+  checked,
+  minlength,
+  required,
+  onChange,
+}: IInputProps) {
+  return (
+    <StyledInput
+      type={type}
+      name={name}
+      value={value}
+      id={id}
+      onChange={onChange}
+      checked={checked}
+      minlength={minlength}
+      required={required}
+    />
+  );
 }
