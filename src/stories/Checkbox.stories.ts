@@ -27,12 +27,8 @@ const meta = {
       control: "text",
       description: "checkbox의 id",
     },
-    checked: {
-      control: "boolean",
-      description: "checkbox의 체크 여부",
-    },
   },
-  args: {},
+  args: { onChange: fn() },
 } satisfies Meta<typeof Checkbox>;
 
 export default meta;
@@ -41,6 +37,6 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     label: "Apple",
-    checked: true,
+    onChange: () => {},
   },
 };
