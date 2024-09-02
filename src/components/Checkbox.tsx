@@ -1,60 +1,53 @@
-import styled from "styled-components";
-import { createColorToken } from "../tokens/colors";
-import baseColorToken from "../tokens/tokens.json";
 import { useState } from "react";
+import styled from "styled-components";
 
-interface ICheckboxProps {
+interface ICheckboxItem {
   name: string;
   value: string;
   id: string;
-  label?: string;
-  onChange?: () => void;
+  label: string;
 }
 
-const colorChip = createColorToken();
-const baseColorChip = baseColorToken;
-
-const StyledInputBox = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-`;
-
-const StyledInput = styled.input`
-  cursor: pointer;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  border-radius: 5px;
-  border: 2px solid rgb(194, 219, 255);
-  margin: 0;
-
-  &[data-checked="true"] {
-    background-color: ${colorChip.colorPrimary};
-  }
-`;
+const StyledInput = styled.input``;
 const StyledLabel = styled.label``;
 
-export default function Checkbox(props: ICheckboxProps) {
-  const [check, setCheck] = useState<boolean>(true);
+const Checkbox = ({ items }: any) => {
+  const [checkedList, setCheckedList] = useState<string[]>([]);
+
+  const checkedItemHandler = async (value: string, isChecked: boolean) => {
+    if (isChecked) {
+      setCheckedList((prev) => [...prev, value]);
+      return;
+    }
+
+    if (!isChecked && checkedList.includes(value)) {
+      setCheckedList(checkedList.filter((item) => item !== value));
+      return;
+    }
+  };
+
+  const checkHandler = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    value: string
+  ) => {
+    checkedItemHandler(value, e.target.checked);
+  };
 
   return (
-    <StyledInputBox>
-      <StyledInput
-        type="checkbox"
-        id={props.id}
-        name={props.name}
-        value={props.value}
-        onClick={() => setCheck(!check)}
-        data-checked={check}
-        onChange={() => props.onChange?.()}
-      />
-      {props.label && (
-        <StyledLabel htmlFor={props.id}>{props.label}</StyledLabel>
-      )}
-    </StyledInputBox>
+    <>
+      {items.map((item: ICheckboxItem, idx: number) => (
+        <div className="checkbox" key={idx}>
+          <StyledInput
+            type="checkbox"
+            id={item.id}
+            checked={checkedList.includes(item.id)}
+            onChange={(e) => checkHandler(e, item.id)}
+          />
+          <StyledLabel htmlFor={item.id}>{item.label}</StyledLabel>
+        </div>
+      ))}
+    </>
   );
-}
+};
+
+export default Checkbox;
